@@ -21,7 +21,10 @@ public:
             mid = start + (end - start) / 2;
         }
         
-        return end + 1; 
+        if(start > end)
+            return end + 1;
+        else
+            return end - 1;
         
     }
 };
