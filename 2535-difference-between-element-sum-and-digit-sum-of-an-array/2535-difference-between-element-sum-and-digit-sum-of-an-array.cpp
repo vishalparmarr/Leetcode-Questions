@@ -11,7 +11,7 @@ public:
         int i = 0;
         while(i < nums.size()) {
             
-                    while(nums[i] != 0) {
+                    while(nums[i] > 0) {
                     int digit = nums[i] % 10;
                     digitSum += digit;
                     nums[i] /= 10;
