@@ -11,15 +11,10 @@ public:
         int i = 0;
         while(i < nums.size()) {
             
-            if(nums[i] < 9)
-                digitSum += nums[i];
-            
-            else {
-                while(nums[i] != 0) {
-                int digit = nums[i] % 10;
-                digitSum += digit;
-                nums[i] /= 10;
-                }
+                    while(nums[i] != 0) {
+                    int digit = nums[i] % 10;
+                    digitSum += digit;
+                    nums[i] /= 10;
             }
             i++;
         }
