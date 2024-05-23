@@ -1,30 +1,58 @@
 class Solution {
-public:
-    int min_ans = 10000000, max_ans = -1;
-    int binarySearch(int start, int end, int target, vector<int>& nums, int dir) {
-        if(start > end) return -1;
-        int mid = start + (end-start)/2;
-        if(nums[mid] == target) {
-            if(dir == 0) {
-                min_ans = min(mid, min_ans);
-                return binarySearch(start, mid-1, target, nums, dir);
+private:
+    
+    int first(vector<int>& nums, int target) {
+        
+        int start = 0;
+        int end = nums.size() - 1;
+        int ans = -1;
+        int mid = start + (end - start) / 2;
+        
+        while(start <= end) {
+            
+            if(nums[mid] == target) {
+                ans = mid;
+                end = mid - 1;
             }
-            else {
-                max_ans = max(mid, max_ans);
-                return binarySearch(mid+1, end, target, nums, dir);
-            }
+            else if(nums[mid] < target)
+                start = mid + 1;
+            else
+                end = mid - 1;
+            
+            mid = start + (end - start) / 2;  
         }
-        else if(nums[mid] < target) return binarySearch(mid+1, end, target, nums, dir);
-        else return binarySearch(start, mid-1, target, nums, dir);
+        return ans;
     }
-
-    vector<int> searchRange(vector<int>& nums, int target) {
-        if(nums.size() == 0) return vector<int>({-1, -1});
-        binarySearch(0, nums.size()-1, target, nums, 0);
-        binarySearch(0, nums.size()-1, target, nums, 1);
-        if(max_ans == -1) {
-            return vector<int>({-1, -1});
+    
+    int last(vector<int>& nums, int target) {
+        
+        int start = 0;
+        int end = nums.size() - 1;
+        int ans = -1;
+        int mid = start + (end - start) / 2;
+        
+        while(start <= end) {
+            
+            if(nums[mid] == target) {
+                ans = mid;
+                start = mid + 1;
+            }
+            else if(nums[mid] < target)
+                start = mid + 1;
+            else
+                end = mid - 1;
+            
+            mid = start + (end - start) / 2;  
         }
-        return vector<int>({min_ans, max_ans});
+        return ans;
+    }
+    
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+    
+        vector <int> ans;
+        ans.push_back(first(nums, target));
+        ans.push_back(last(nums, target));
+        return ans;
     }
 };
