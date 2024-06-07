@@ -1,4 +1,14 @@
 class Solution {
+private:
+    char tolowerCase(char s) {
+        
+        if(s >= '0' && s <= '9' || s >= 'a' && s <= 'z')
+            return s;
+        else {
+            char temp = s - 'A' + 'a';
+            return temp;
+        }
+    }
 public:
     bool isPalindrome(string s) {
         
@@ -6,8 +16,8 @@ public:
         int i = 0;
         
         while(i < s.length()) {
-            if(isalnum(s[i])) {
-                st.push_back(tolower(s[i]));
+            if(s[i] >= 'a' && s[i] <= 'z' || s[i] >= 'A' && s[i] <= 'Z' || s[i] >= '0' && s[i] <= '9') {
+                st.push_back(tolowerCase(s[i]));
             }
             i++;
         }
