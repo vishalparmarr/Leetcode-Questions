@@ -33,9 +33,21 @@ public:
         if(head == NULL || head -> next == NULL)
             return false;
         
-        if(isCycle(head))
-            return true;
-        else
-            return false;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        
+        while(fast != NULL && slow != NULL) {
+            
+            fast = fast -> next;
+            if(fast != NULL)
+                fast = fast -> next;
+            
+            slow = slow -> next;
+            
+            if(slow == fast)
+                return true;
+        }
+        
+        return false;
     }
 };
